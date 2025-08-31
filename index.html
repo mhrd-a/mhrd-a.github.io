@@ -66,11 +66,11 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-effect">
         <div class="w-full px-0 py-6">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center ml-20 mr-10">
                 <div class="text-2xl font-bold gradient-text">Mehrdad</div>
                 <div class="flex space-x-8">
                     <a href="#home" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('home')">Home</a>
-                    <a href="#interests" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('interests')">Research</a>
+                    <a href="#interests" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('interests')">Interest Areas</a>
                     <a href="#portfolio" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('portfolio')">Portfolio</a>
                     <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('about')">About</a>
                     <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('contact')">Contact</a>
@@ -135,50 +135,21 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Research Areas Section -->
+                    <!-- Interest Areas Section -->
                     <div id="interests-section" class="section-content section-fade hidden">
                         <div class="glass-effect rounded-3xl p-10 hover-glow">
-                            <h2 class="text-4xl font-bold mb-8 gradient-text">Research Areas</h2>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div class="glass-effect p-8 rounded-2xl hover-glow">
-                                   
-
-                                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-4 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-3">Strategic Management</h3>
-                                    <p class="text-gray-600">Exploring organizational strategy, competitive advantage, and strategic decision-making processes in modern business environments.</p>
-                                </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg mb-4 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-3">Business Administration</h3>
-                                    <p class="text-gray-600">Comprehensive study of business operations, management principles, and organizational behavior dynamics.</p>
-                                </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg mb-4 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
-                                            <path fillRule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 2a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-3">Research Methodology</h3>
-                                    <p class="text-gray-600">Advanced quantitative and qualitative research methods in business and management studies.</p>
-                                </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg mb-4 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-3">Academic Writing</h3>
-                                    <p class="text-gray-600">Scholarly publication, peer review processes, and academic communication strategies.</p>
-                                </div>
+                            <h2 class="text-4xl font-bold mb-8 gradient-text">Interest Areas</h2>
+                            <div class="space-y-6">
+                                <p class="text-gray-700 leading-relaxed text-lg">
+                                    I am passionate about exploring how new ideas, emerging technologies, and management theories shape the future of entrepreneurship. My research focuses on understanding how entrepreneurs, investors, and ecosystems leverage innovation, collective intelligence, and technology to create lasting impact.
+                                </p>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Areas of Interest</h3>
+                                <ul class="list-disc list-inside text-gray-600 text-lg space-y-2">
+                                    <li>Entrepreneurship & Innovation</li>
+                                    <li>Crowd Wisdom</li>
+                                    <li>Entrepreneurial Finance (Crowdfunding & Venture Capital)</li>
+                                    <li>AI & Technology Adoption</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -188,27 +159,27 @@
                             <h2 class="text-4xl font-bold mb-8 gradient-text">Portfolio</h2>
                             <div class="space-y-8">
                                 <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-blue-500">
-                                    <div class="flex justify-between items-start mb-4">
-                                        <h3 class="text-2xl font-bold text-gray-900">Research Projects</h3>
-                                        <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">In Progress</span>
-                                    </div>
-                                    <p class="text-gray-600 text-lg leading-relaxed">Current and completed research initiatives in strategic management and business administration, focusing on organizational effectiveness and competitive strategy.</p>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Eye-Tracking</h3>
+                                    <p class="text-gray-600 text-lg leading-relaxed mb-4">A Conceptual Model for Eye-Tracking Backer Attention to Creator and Crowd Signals with Demographic Moderation in Crowdfunding.</p>
+                                    <a href="https://mhrd-a.github.io/NeuroView/" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
                                 </div>
-                               
                                 <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-green-500">
-                                    <div class="flex justify-between items-start mb-4">
-                                        <h3 class="text-2xl font-bold text-gray-900">Publications</h3>
-                                        <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">Published</span>
-                                    </div>
-                                    <p class="text-gray-600 text-lg leading-relaxed">Academic papers, conference presentations, and scholarly contributions to the field of strategic management and business research.</p>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Business Model Hub</h3>
+                                    <p class="text-gray-600 text-lg leading-relaxed mb-4">Provide entrepreneurs and students with intuitive tools to design, analyze, and generate complete business models.</p>
+                                    <a href="https://hub.odusec.org/" class="bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
                                 </div>
-                               
                                 <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-purple-500">
-                                    <div class="flex justify-between items-start mb-4">
-                                        <h3 class="text-2xl font-bold text-gray-900">Academic Collaborations</h3>
-                                        <span class="bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Ongoing</span>
-                                    </div>
-                                    <p class="text-gray-600 text-lg leading-relaxed">Partnerships with fellow researchers and academic institutions, fostering innovation and knowledge exchange in business academia.</p>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Management Theories Flashcards</h3>
+                                </div>
+                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-orange-500">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Sentimental Analysis on SEC 10-K Filings</h3>
+                                </div>
+                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-red-500">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Recursive Gen AI</h3>
+                                    <p class="text-gray-600 text-lg leading-relaxed mb-4">Integrating two research areas: recursive AI-guided business modeling and autonomous prompt engineering.</p>
+                                </div>
+                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-teal-500">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Artificial Intelligence in Venture Capital Investment</h3>
                                 </div>
                             </div>
                         </div>
@@ -283,7 +254,6 @@
                                         <p>Monday - Friday</p>
                                         <p class="text-blue-600">9:00 AM - 5:00 PM</p>
                                         <div class="w-full h-px bg-gray-300 my-4"></div>
-                                        <p class="text-sm text-gray-600">Available by appointment for research consultations and academic discussions</p>
                                     </div>
                                 </div>
                             </div>
