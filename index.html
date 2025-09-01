@@ -63,6 +63,7 @@
             overflow: hidden;
             position: sticky;
             top: 96px; /* Adjusted to account for nav bar height */
+            transition: width 0.3s ease; /* Smooth transition for size change */
         }
         .profile-photo-container img {
             width: 100%;
@@ -70,8 +71,11 @@
             object-fit: contain; /* Ensure entire image is visible */
             object-position: center;
         }
-        .profile-photo-container.hidden {
-            display: none; /* Hide profile photo when About section is active */
+        .profile-photo-container.full-size {
+            max-width: calc(100% / 3); /* Full size for Home (lg:w-1/3 equivalent) */
+        }
+        .profile-photo-container.half-size {
+            max-width: calc(100% / 6); /* Half size for other sections (lg:w-1/6 equivalent) */
         }
         .dropdown-content {
             max-height: 0;
@@ -87,10 +91,6 @@
             max-width: 150px; /* Constrain photo size */
             object-fit: cover;
             border-radius: 8px;
-        }
-        /* Ensure content takes full width when profile photo is hidden */
-        .content-full-width {
-            width: 100% !important;
         }
     </style>
 </head>
@@ -114,13 +114,15 @@
     <div class="pt-24 min-h-screen">
         <div class="w-full px-0">
             <div class="flex flex-col lg:flex-row gap-12 items-start">
-                <!-- Left Side - Photo (1/3 width) -->
-                <div class="lg:w-1/3 w-full profile-photo-container">
-                    <!-- Profile photo -->
-                    <img src="https://mhrd-a.github.io/files/mehrdad_profile.jpg" alt="Mehrdad Profile" class="rounded-lg">
+                <!-- Left Side - Photo (1/3 width for Home, 1/6 for others) -->
+                <div class="lg:w-1/3 w-full" id="photo-column">
+                    <div class="w-full profile-photo-container full-size">
+                        <!-- Profile photo -->
+                        <img src="https://mhrd-a.github.io/files/mehrdad_profile.jpg" alt="Mehrdad Profile" class="rounded-lg">
+                    </div>
                 </div>
                 <!-- Right Side - Content (2/3 width) -->
-                <div class="lg:w-2/3 w-full content-container">
+                <div class="lg:w-2/3 w-full">
                     <!-- Home Section -->
                     <div id="home-section" class="section-content section-fade">
                         <div class="space-y-8">
@@ -301,7 +303,7 @@
                                                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                                                 </svg>
                                             </div>
-                                            <span class="text-gray-600 text-lg">Norfolk, VA</span>
+                                            <span class="text-gray-700 text-lg">Norfolk, VA</span>
                                         </div>
                                         <div class="flex items-center glass-effect p-4 rounded-xl">
                                             <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
@@ -309,13 +311,13 @@
                                                     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
                                                 </svg>
                                             </div>
-                                            <span class="text-gray-600 text-lg">Old Dominion University</span>
+                                            <span class="text-gray-700 text-lg">Old Dominion University</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="glass-effect p-8 rounded-2xl">
                                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Availability</h3>
-                                    <div class="space-y-3 text-gray-600 text-lg">
+                                    <div class="space-y-3 text-gray-700 text-lg">
                                         <p>Monday - Friday</p>
                                         <p class="text-blue-600">9:00 AM - 5:00 PM</p>
                                         <div class="w-full h-px bg-gray-300 my-4"></div>
@@ -339,15 +341,19 @@
                 }, 250);
             });
 
-            // Toggle profile photo visibility and content width
+            // Adjust profile photo size
+            const photoColumn = document.getElementById('photo-column');
             const photoContainer = document.querySelector('.profile-photo-container');
-            const contentContainer = document.querySelector('.content-container');
-            if (sectionName === 'about') {
-                photoContainer.classList.add('hidden');
-                contentContainer.classList.add('content-full-width');
+            if (sectionName === 'home') {
+                photoColumn.classList.remove('lg:w-1/6');
+                photoColumn.classList.add('lg:w-1/3');
+                photoContainer.classList.remove('half-size');
+                photoContainer.classList.add('full-size');
             } else {
-                photoContainer.classList.remove('hidden');
-                contentContainer.classList.remove('content-full-width');
+                photoColumn.classList.remove('lg:w-1/3');
+                photoColumn.classList.add('lg:w-1/6');
+                photoContainer.classList.remove('full-size');
+                photoContainer.classList.add('half-size');
             }
 
             // Show the selected section with fade in
