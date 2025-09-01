@@ -60,6 +60,14 @@
         .profile-photo-container {
             aspect-ratio: 6 / 9;
         }
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .dropdown-content.open {
+            max-height: 300px; /* Adjust based on content size */
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 min-h-screen">
@@ -109,7 +117,6 @@
                                 <button onclick="showSection('portfolio')" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-10 py-4 mb-12 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
                                     View Portfolio
                                 </button>
-
                                 <h3 class="text-2xl font-bold mb-4 gradient-text">Welcome</h3>
                                 <p class="text-gray-700 leading-relaxed text-lg mb-8">
                                     Welcome to my academic portfolio! Here, you'll find detailed information about my expertise in research and academic projects. I am committed to providing valuable knowledge and support to enhance academic endeavors. Feel free to explore and learn more about my professional background and how I can contribute to your academic projects.
@@ -149,31 +156,45 @@
                     </div>
                     <!-- Portfolio Section -->
                     <div id="portfolio-section" class="section-content section-fade hidden">
-                        <div class="glass-effect rounded-3xl p-10 hover-glow">
                             <h2 class="text-4xl font-bold mb-8 gradient-text">Portfolio</h2>
-                            <div class="space-y-8">
-                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-gray-100">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Eye-Tracking</h3>
-                                    <p class="text-gray-600 text-lg leading-relaxed mb-4">A Conceptual Model for Eye-Tracking Backer Attention to Creator and Crowd Signals with Demographic Moderation in Crowdfunding.</p>
-                                    <a href="https://mhrd-a.github.io/NeuroView/" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
+                            <div class="space-y-4">
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('eye-tracking')">
+                                    <h3 class="text-2xl font-bold text-gray-900">Eye-Tracking</h3>
+                                    <div id="eye-tracking" class="dropdown-content">
+                                        <p class="text-gray-600 text-lg leading-relaxed mt-4 mb-4">A Conceptual Model for Eye-Tracking Backer Attention to Creator and Crowd Signals with Demographic Moderation in Crowdfunding.</p>
+                                        <a href="https://mhrd-a.github.io/NeuroView/" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
+                                    </div>
                                 </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-gray-100">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Business Model Hub</h3>
-                                    <p class="text-gray-600 text-lg leading-relaxed mb-4">Provide entrepreneurs and students with intuitive tools to design, analyze, and generate complete business models.</p>
-                                    <a href="https://hub.odusec.org/" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('business-model')">
+                                    <h3 class="text-2xl font-bold text-gray-900">Business Model Hub</h3>
+                                    <div id="business-model" class="dropdown-content">
+                                        <p class="text-gray-600 text-lg leading-relaxed mt-4 mb-4">Provide entrepreneurs and students with intuitive tools to design, analyze, and generate complete business models.</p>
+                                        <a href="https://hub.odusec.org/" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
+                                    </div>
                                 </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-gray-100">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Management Theories Flashcards</h3>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('flashcards')">
+                                    <h3 class="text-2xl font-bold text-gray-900">Management Theories Flashcards</h3>
+                                    <div id="flashcards" class="dropdown-content">
+                                        <p class="text-gray-600 text-lg leading-relaxed mt-4 mb-4">Interactive flashcards to help students and professionals learn and review key management theories.</p>
+                                    </div>
                                 </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-gray-100">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Sentimental Analysis on SEC 10-K Filings</h3>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('sentimental-analysis')">
+                                    <h3 class="text-2xl font-bold text-gray-900">Sentimental Analysis on SEC 10-K Filings</h3>
+                                    <div id="sentimental-analysis" class="dropdown-content">
+                                        <p class="text-gray-600 text-lg leading-relaxed mt-4 mb-4">Analysis of sentiment in SEC 10-K filings to understand corporate communication trends.</p>
+                                    </div>
                                 </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-gray-100">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Recursive Gen AI</h3>
-                                    <p class="text-gray-600 text-lg leading-relaxed mb-4">Integrating two research areas: recursive AI-guided business modeling and autonomous prompt engineering.</p>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('recursive-ai')">
+                                    <h3 class="text-2xl font-bold text-gray-900">Recursive Gen AI</h3>
+                                    <div id="recursive-ai" class="dropdown-content">
+                                        <p class="text-gray-600 text-lg leading-relaxed mt-4 mb-4">Integrating two research areas: recursive AI-guided business modeling and autonomous prompt engineering.</p>
+                                    </div>
                                 </div>
-                                <div class="glass-effect p-8 rounded-2xl hover-glow border-l-4 border-gray-100">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Artificial Intelligence in Venture Capital Investment</h3>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('ai-venture')">
+                                    <h3 class="text-2xl font-bold text-gray-900">Artificial Intelligence in Venture Capital Investment</h3>
+                                    <div id="ai-venture" class="dropdown-content">
+                                        <p class="text-gray-600 text-lg leading-relaxed mt-4 mb-4">Exploring the role of AI in enhancing venture capital investment decisions.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +287,7 @@
                     section.classList.add('hidden');
                 }, 250);
             });
-          
+         
             // Show the selected section with fade in
             setTimeout(() => {
                 const targetSection = document.getElementById(sectionName + '-section');
@@ -277,20 +298,34 @@
                     }, 50);
                 }
             }, 250);
-          
+         
             // Update navigation active state
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
-          
+         
             // Highlight active nav item
             const activeLink = document.querySelector(`.nav-link[href="#${sectionName}"]`);
             if (activeLink) {
                 activeLink.classList.add('active');
             }
         }
-      
+
+        function toggleDropdown(id) {
+            const content = document.getElementById(id);
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+            } else {
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content').forEach(item => {
+                    item.classList.remove('open');
+                });
+                // Open the clicked dropdown
+                content.classList.add('open');
+            }
+        }
+     
         // Initialize with home section
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
