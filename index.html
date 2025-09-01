@@ -6,9 +6,10 @@
     <title>Mehrdad Academic Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Replace with Futura Light font source if available, e.g., via CDN or local file */
+        /* Example: @import url('path-to-futura-light.css'); */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Futura Light', sans-serif;
             background-color: #0a0a0a;
         }
         .gradient-text {
@@ -106,7 +107,6 @@
                                     <p>Strome College of Business</p>
                                     <p>Old Dominion University</p>
                                 </div>
-                               
                                 <button onclick="showSection('portfolio')" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
                                     View Portfolio
                                 </button>
@@ -117,7 +117,6 @@
                                 <p class="text-gray-700 leading-relaxed text-lg mb-8">
                                     Welcome to my academic portfolio! Here, you'll find detailed information about my expertise in research and academic projects. I am committed to providing valuable knowledge and support to enhance academic endeavors. Feel free to explore and learn more about my professional background and how I can contribute to your academic projects.
                                 </p>
-                               
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-6">
                                         <!-- LinkedIn Logo -->
@@ -191,7 +190,6 @@
                                 <p class="text-gray-700 leading-relaxed text-lg">
                                     As a Ph.D. student in Business Administration with a focus on Strategic Management, I am passionate about advancing knowledge in organizational strategy and management practices. My academic journey at Old Dominion University's Strome College of Business has equipped me with comprehensive research skills and deep theoretical understanding.
                                 </p>
-                               
                                 <div class="glass-effect p-8 rounded-2xl">
                                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Academic Journey</h3>
                                     <div class="space-y-4">
@@ -272,7 +270,7 @@
                     section.classList.add('hidden');
                 }, 250);
             });
-           
+          
             // Show the selected section with fade in
             setTimeout(() => {
                 const targetSection = document.getElementById(sectionName + '-section');
@@ -283,20 +281,20 @@
                     }, 50);
                 }
             }, 250);
-           
+          
             // Update navigation active state
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
-           
+          
             // Highlight active nav item
             const activeLink = document.querySelector(`.nav-link[href="#${sectionName}"]`);
             if (activeLink) {
                 activeLink.classList.add('active');
             }
         }
-       
+      
         // Initialize with home section
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
@@ -304,5 +302,6 @@
             }, 100);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'977eead4c382dd00',t:'MTc1NjY2ODM2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'977eead4c382dd00',t:'MTc1NjY2ODM2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
 </html>
