@@ -70,6 +70,9 @@
             object-fit: contain; /* Ensure entire image is visible */
             object-position: center;
         }
+        .profile-photo-container.hidden {
+            display: none; /* Hide profile photo when About section is active */
+        }
         .dropdown-content {
             max-height: 0;
             overflow: hidden;
@@ -77,6 +80,17 @@
         }
         .dropdown-content.open {
             max-height: 300px; /* Adjust based on content size */
+        }
+        .story-photo {
+            aspect-ratio: 6 / 9;
+            width: 100%;
+            max-width: 150px; /* Constrain photo size */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        /* Ensure content takes full width when profile photo is hidden */
+        .content-full-width {
+            width: 100% !important;
         }
     </style>
 </head>
@@ -101,14 +115,12 @@
         <div class="w-full px-0">
             <div class="flex flex-col lg:flex-row gap-12 items-start">
                 <!-- Left Side - Photo (1/3 width) -->
-                <div class="lg:w-1/3 w-full">
-                    <div class="w-full profile-photo-container">
-                        <!-- Profile photo -->
-                        <img src="https://mhrd-a.github.io/files/mehrdad_profile.jpg" alt="Mehrdad Profile" class="rounded-lg">
-                    </div>
+                <div class="lg:w-1/3 w-full profile-photo-container">
+                    <!-- Profile photo -->
+                    <img src="https://mhrd-a.github.io/files/mehrdad_profile.jpg" alt="Mehrdad Profile" class="rounded-lg">
                 </div>
                 <!-- Right Side - Content (2/3 width) -->
-                <div class="lg:w-2/3 w-full">
+                <div class="lg:w-2/3 w-full content-container">
                     <!-- Home Section -->
                     <div id="home-section" class="section-content section-fade">
                         <div class="space-y-8">
@@ -139,7 +151,7 @@
                                         </svg>
                                     </a>
                                     <!-- About Me Button -->
-                                    <button onclick="showSection('about')" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-14 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                                    <button onclick="showSection('about')" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
                                         About Me
                                     </button>
                                 </div>
@@ -219,19 +231,47 @@
                                     As a Ph.D. student in Business Administration with a focus on Strategic Management, I am passionate about advancing knowledge in organizational strategy and management practices. My academic journey at Old Dominion University's Strome College of Business has equipped me with comprehensive research skills and deep theoretical understanding.
                                 </p>
                                 <div class="glass-effect p-8 rounded-2xl">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Academic Journey</h3>
-                                    <div class="space-y-4">
-                                        <div class="flex items-center">
-                                            <div class="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-4"></div>
-                                            <span class="text-gray-700 text-lg">Ph.D. in Business Administration (In Progress)</span>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-6">My Journey</h3>
+                                    <div class="space-y-8">
+                                        <!-- BUZ Farwell + Project Management Certification -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/cognitive.jpg?raw=true" alt="BUZ Farwell" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">BUZ Farwell + Project Management Certification</h4>
+                                                <p class="text-gray-600 text-lg leading-relaxed">Completed a one-year Project Management Course at Bühler's headquarters in Switzerland, culminating in a graduation ceremony recognizing my training as a project manager.</p>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center">
-                                            <div class="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full mr-4"></div>
-                                            <span class="text-gray-700 text-lg">Strategic Management Specialization</span>
+                                        <!-- eBuhler Innovation Challenge -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/cognitive.jpg?raw=true" alt="eBuhler Innovation" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">"eBuhler" Idea in the Bühler Innovation Challenge 2016</h4>
+                                                <p class="text-gray-600 text-lg leading-relaxed">Recognized as a finalist in the 2016 Bühler Innovation Challenge for "eBuhler," a technology platform connecting producers and customers for direct purchases, enabling market demand analysis to boost production line sales.</p>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center">
-                                            <div class="w-3 h-3 bg-gradient-to-r from-green-500 to-blue-600 rounded-full mr-4"></div>
-                                            <span class="text-gray-700 text-lg">Research Excellence Focus</span>
+                                        <!-- Business Models Workshop -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/cognitive.jpg?raw=true" alt="Business Models Workshop" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">"Introduction to Business Models and Business Model Patterns” Workshop</h4>
+                                                <p class="text-gray-600 text-lg leading-relaxed">Led a workshop covering idea generation, market research, opportunity recognition, business model design, and various business model patterns to empower entrepreneurs and students.</p>
+                                            </div>
+                                        </div>
+                                        <!-- LG Global Challenge + University Award -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/cognitive.jpg?raw=true" alt="LG Global Challenge" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">Semifinalist of “LG Global Challenge 2018” & Top Student University Award</h4>
+                                                <p class="text-gray-600 text-lg leading-relaxed">Achieved semifinalist status in the LG Global Challenge 2018 by proposing blockchain-based solutions for environmental sustainability. Also received the Top Student University Award in 2018.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Crowd Wisdom in Fundraising -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/cognitive.jpg?raw=true" alt="Crowd Wisdom Research" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">Crowd Wisdom in Fundraising: A Cognitive Decision-Making Approach</h4>
+                                                <p class="text-gray-600 text-lg leading-relaxed">Presented research at the 2nd GSGA Annual Research Conference, examining cognitive dimensions of crowd wisdom in crowdfunding, focusing on attention, relevance, and mental models in decision-making.</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +301,7 @@
                                                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                                                 </svg>
                                             </div>
-                                            <span class="text-gray-700 text-lg">Norfolk, VA</span>
+                                            <span class="text-gray-600 text-lg">Norfolk, VA</span>
                                         </div>
                                         <div class="flex items-center glass-effect p-4 rounded-xl">
                                             <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
@@ -269,13 +309,13 @@
                                                     <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
                                                 </svg>
                                             </div>
-                                            <span class="text-gray-700 text-lg">Old Dominion University</span>
+                                            <span class="text-gray-600 text-lg">Old Dominion University</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="glass-effect p-8 rounded-2xl">
                                     <h3 class="text-2xl font-bold text-gray-900 mb-6">Availability</h3>
-                                    <div class="space-y-3 text-gray-700 text-lg">
+                                    <div class="space-y-3 text-gray-600 text-lg">
                                         <p>Monday - Friday</p>
                                         <p class="text-blue-600">9:00 AM - 5:00 PM</p>
                                         <div class="w-full h-px bg-gray-300 my-4"></div>
@@ -298,7 +338,18 @@
                     section.classList.add('hidden');
                 }, 250);
             });
-         
+
+            // Toggle profile photo visibility and content width
+            const photoContainer = document.querySelector('.profile-photo-container');
+            const contentContainer = document.querySelector('.content-container');
+            if (sectionName === 'about') {
+                photoContainer.classList.add('hidden');
+                contentContainer.classList.add('content-full-width');
+            } else {
+                photoContainer.classList.remove('hidden');
+                contentContainer.classList.remove('content-full-width');
+            }
+
             // Show the selected section with fade in
             setTimeout(() => {
                 const targetSection = document.getElementById(sectionName + '-section');
@@ -309,13 +360,13 @@
                     }, 50);
                 }
             }, 250);
-         
+
             // Update navigation active state
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
-         
+
             // Highlight active nav item
             const activeLink = document.querySelector(`.nav-link[href="#${sectionName}"]`);
             if (activeLink) {
@@ -336,7 +387,7 @@
                 content.classList.add('open');
             }
         }
-     
+
         // Initialize with home section
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
