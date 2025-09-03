@@ -136,7 +136,7 @@
         <div class="w-full px-0">
             <div class="flex flex-col lg:flex-row gap-12 items-start">
                 <!-- Left Side - Photo (1/3 width) -->
-                <div class="lg:w-1/3 w-full">
+                <div id="profile-photo-column" class="lg:w-1/3 w-full">
                     <div class="w-full profile-photo-container">
                         <!-- Profile photo -->
                         <img src="https://mhrd-a.github.io/files/mehrdad_profile.jpg" alt="Mehrdad Profile" class="rounded-lg">
@@ -387,6 +387,15 @@
         mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
         function showSection(sectionName) {
+            const profilePhotoColumn = document.getElementById('profile-photo-column');
+            if (sectionName === 'home') {
+                // If it's the home section, ensure the photo is visible on all screen sizes
+                profilePhotoColumn.classList.remove('hidden', 'lg:block');
+            } else {
+                // For all other sections, hide the photo on mobile but show it on desktop
+                profilePhotoColumn.classList.add('hidden', 'lg:block');
+            }
+
             // Hide all sections with fade out
             const sections = document.querySelectorAll('.section-content');
             sections.forEach(section => {
@@ -395,7 +404,7 @@
                     section.classList.add('hidden');
                 }, 250);
             });
-         
+            
             // Show the selected section with fade in
             setTimeout(() => {
                 const targetSection = document.getElementById(sectionName + '-section');
@@ -406,13 +415,13 @@
                     }, 50);
                 }
             }, 250);
-         
+            
             // Update navigation active state
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
             });
-         
+            
             // Highlight active nav item
             const activeLinks = document.querySelectorAll(`.nav-link[href="#${sectionName}"]`);
             if (activeLinks) {
@@ -433,7 +442,7 @@
                 content.classList.add('open');
             }
         }
-     
+    
         // Initialize with home section
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
