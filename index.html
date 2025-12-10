@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,6 @@
     <title>Mehrdad Academic Portfolio</title>
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/mhrd-a/mhrd-a.github.io/main/files/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
@@ -24,7 +24,9 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .hover-glow { transition: all 0.3s ease; }
+        .hover-glow {
+            transition: all 0.3s ease;
+        }
         .hover-glow:hover {
             box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
             transform: translateY(-2px);
@@ -40,7 +42,7 @@
             height: 2px;
             bottom: -5px;
             left: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
@@ -58,16 +60,16 @@
             transform: translateY(0);
         }
         .profile-photo-container {
-            max-height: 100vh;
+            max-height: 100vh; /* Fit within viewport height */
             width: 100%;
             overflow: hidden;
             position: sticky;
-            top: 96px;
+            top: 96px; /* Adjusted to account for nav bar height */
         }
         .profile-photo-container img {
             width: 100%;
             height: auto;
-            object-fit: contain;
+            object-fit: contain; /* Ensure entire image is visible */
             object-position: center;
         }
         .dropdown-content {
@@ -75,29 +77,23 @@
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
-        .dropdown-content.open { max-height: 1000px; }
+        .dropdown-content.open {
+            max-height: 1000px; /* Adjust based on content size */
+        }
         .story-photo {
             aspect-ratio: 9 / 6;
             height: 100%;
-            max-width: 150px;
+            max-width: 150px; /* Constrain photo size */
             object-fit: cover;
             border-radius: 8px;
         }
-
-        /* Modal Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to   { opacity: 1; transform: scale(1); }
+        /* Mobile Menu Styles */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out;
         }
-        .animate-fadeIn {
-            animation: fadeIn 0.25s ease-out;
-        }
-
     </style>
 </head>
-
 <body class="bg-white text-gray-900 min-h-screen">
-
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-effect">
         <div class="w-full px-4 sm:px-6 lg:px-8">
@@ -105,390 +101,469 @@
                 <div class="text-4xl font-bold gradient-text">Mehrdad</div>
                 
                 <div class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="nav-link" onclick="showSection('home')">Home</a>
-                    <a href="#interests" class="nav-link" onclick="showSection('interests')">Interest Areas</a>
-                    <a href="#portfolio" class="nav-link" onclick="showSection('portfolio')">Portfolio</a>
-                    <a href="#about" class="nav-link" onclick="showSection('about')">About</a>
-                    <a href="#contact" class="nav-link" onclick="showSection('contact')">Contact</a>
+                    <a href="#home" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('home')">Home</a>
+                    <a href="#interests" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('interests')">Interest Areas</a>
+                    <a href="#portfolio" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('portfolio')">Portfolio</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('about')">About</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900 font-medium cursor-pointer" onclick="showSection('contact')">Contact</a>
                 </div>
 
-                <div class="lg:hidden">
-                    <button id="mobile-menu-button" class="p-2">
-                        <svg id="hamburger-icon" class="h-8 w-8" fill="none" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"/>
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="hamburger-icon" class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
-                        <svg id="close-icon" class="hidden h-8 w-8" fill="none" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"/>
+                        <svg id="close-icon" class="hidden h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="mobile-menu" class="lg:hidden hidden text-center pb-4">
-            <a href="#home" class="block nav-link py-2" onclick="showSection('home'); toggleMobileMenu();">Home</a>
-            <a href="#interests" class="block nav-link py-2" onclick="showSection('interests'); toggleMobileMenu();">Interest Areas</a>
-            <a href="#portfolio" class="block nav-link py-2" onclick="showSection('portfolio'); toggleMobileMenu();">Portfolio</a>
-            <a href="#about" class="block nav-link py-2" onclick="showSection('about'); toggleMobileMenu();">About</a>
-            <a href="#contact" class="block nav-link py-2" onclick="showSection('contact'); toggleMobileMenu();">Contact</a>
+        <div class="lg:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="block nav-link text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium" onclick="showSection('home'); toggleMobileMenu();">Home</a>
+                <a href="#interests" class="block nav-link text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium" onclick="showSection('interests'); toggleMobileMenu();">Interest Areas</a>
+                <a href="#portfolio" class="block nav-link text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium" onclick="showSection('portfolio'); toggleMobileMenu();">Portfolio</a>
+                <a href="#about" class="block nav-link text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium" onclick="showSection('about'); toggleMobileMenu();">About</a>
+                <a href="#contact" class="block nav-link text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium" onclick="showSection('contact'); toggleMobileMenu();">Contact</a>
+            </div>
         </div>
     </nav>
-
-
     <!-- Main Content -->
     <div class="pt-24 min-h-screen">
-        <div class="flex flex-col lg:flex-row gap-12">
-
-            <!-- Left photo column -->
-            <div id="profile-photo-column" class="lg:w-1/3 w-full">
-                <div class="profile-photo-container">
-                    <img src="https://mhrd-a.github.io/files/mehrdad_profile.jpg" class="rounded-lg">
-                </div>
-            </div>
-
-            <!-- Right content -->
-            <div class="lg:w-2/3 w-full">
-
-                <!-- HOME SECTION -->
-                <div id="home-section" class="section-content section-fade">
-                    <div class="glass-effect p-12 rounded-3xl">
-                        <h1 class="text-4xl font-bold mb-4 gradient-text">Academic Portfolio</h1>
-                        <h2 class="text-2xl text-gray-700 font-light mb-2">Ph.D. Student in Business Administration</h2>
-                        <h3 class="text-xl text-blue-600 font-medium mb-1">Strategic Management</h3>
-
-                        <div class="text-gray-600 mb-8">
-                            <p>Department of Management</p>
-                            <p>Strome College of Business</p>
-                            <p>Old Dominion University</p>
-                        </div>
-
-                        <button onclick="showSection('portfolio')" 
-                                class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-10 py-4 rounded-full font-semibold shadow-lg">
-                            View Portfolio
-                        </button>
-
-                        <h3 class="text-2xl font-bold mb-4 gradient-text">Welcome</h3>
-                        <p class="text-gray-700 text-lg mb-8">
-                            Welcome to my academic portfolio! Explore my research, projects, and academic journey.
-                        </p>
-
-                        <a href="https://www.linkedin.com/in/mehrdad-alikhani" class="text-blue-600 hover:scale-110">
-                            <svg class="w-10 h-10" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569..."/></svg>
-                        </a>
+        <div class="w-full px-0">
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                <!-- Left Side - Photo (1/3 width) -->
+                <div id="profile-photo-column" class="lg:w-1/3 w-full">
+                    <div class="w-full profile-photo-container">
+                        <!-- Profile photo -->
+                        <img src="https://mhrd-a.github.io/files/mehrdad_profile.jpg" alt="Mehrdad Profile" class="rounded-lg">
                     </div>
                 </div>
-
-
-                <!-- INTEREST AREAS -->
-                <div id="interests-section" class="section-content section-fade hidden">
-                    <div class="glass-effect p-10 rounded-3xl">
-                        <h2 class="text-4xl font-bold mb-8 gradient-text">Interest Areas</h2>
-
-                        <p class="text-lg text-gray-700 mb-4">
-                            My research explores innovation, crowd wisdom, entrepreneurial finance, and AI-driven strategy.
-                        </p>
-
-                        <ul class="list-disc ml-6 text-gray-700 text-lg">
-                            <li>Entrepreneurship & Innovation</li>
-                            <li>Crowd Wisdom</li>
-                            <li>Entrepreneurial Finance</li>
-                            <li>AI & Technology Adoption</li>
-                        </ul>
-                    </div>
-                </div>
-
-
-                <!-- PORTFOLIO SECTION -->
-                <div id="portfolio-section" class="section-content section-fade hidden">
-                    <div class="p-10 rounded-3xl">
-                        <h2 class="text-4xl font-bold mb-8 gradient-text">Portfolio</h2>
-
-                        <div class="space-y-4">
-
-                            <!-- Example other project... -->
-
-                            <!-- ECON PROJECT (Updated Buttons with Modal) -->
-                            <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 cursor-pointer"
-                                 onclick="toggleDropdown('econ')">
-                                <h3 class="text-xl font-semibold gradient-text">ECON 708: Econometrics III — Final Project</h3>
-
-                                <div id="econ" class="dropdown-content">
-
-                                    <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">
-                                        Research on whether changes in local employment influence crowdfunding activity.
-                                    </p>
-
-<!-- UPDATED BUTTONS THAT OPEN MODAL -->
-
-<button
-onclick="openEconModal('html','https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Project.html')"
-class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full mb-3 inline-block">
-View Project
-</button>
-
-<button
-onclick="openEconModal('video','https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Video_Abstract-480.mp4')"
-class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full mb-3 inline-block">
-Video Abstract
-</button>
-
-<button
-onclick="openEconModal('pdf','https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Executive_Summary.pdf')"
-class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full mb-3 inline-block">
-Executive Summary
-</button>
-
-<button
-onclick="openEconModal('pdf','https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Slides.pdf')"
-class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full inline-block">
-Slides
-</button>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- ABOUT SECTION -->
-                <div id="about-section" class="section-content section-fade hidden">
-                    <div class="glass-effect rounded-3xl p-10">
-                        <h2 class="text-4xl font-bold mb-8 gradient-text">About Me</h2>
-
-                        <p class="text-gray-700 leading-relaxed text-lg mb-8">
-                            As a Ph.D. student in Business Administration with a focus on Strategic Management,
-                            I explore how innovation, technology, and human cognition shape entrepreneurial behavior.
-                            I combine quantitative methods with behavioral perspectives to study how individuals and
-                            organizations make decisions under uncertainty.
-                        </p>
-
+                <!-- Right Side - Content (2/3 width) -->
+                <div class="lg:w-2/3 w-full">
+                    <!-- Home Section -->
+                    <div id="home-section" class="section-content section-fade">
                         <div class="space-y-8">
-
-                            <!-- Journey Item Example -->
-                            <div class="flex gap-4">
-                                <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/buhler.jpeg?raw=true"
-                                     class="story-photo">
-                                <div>
-                                    <h4 class="text-xl font-semibold text-gray-800">BUZ Farwell + Project Management Certification</h4>
-                                    <p class="text-gray-500 text-lg leading-relaxed">
-                                        Completed a one-year Project Management Course at Bühler headquarters in Switzerland,
-                                        culminating in a graduation ceremony and recognition as a trained project manager.
-                                    </p>
+                            <!-- Hero Section -->
+                            <div class="glass-effect rounded-3xl p-12">
+                                <h1 class="text-4xl font-bold mb-4">
+                                    <span class="gradient-text">Academic Portfolio</span>
+                                </h1>
+                                <h2 class="text-2xl text-gray-700 font-light mb-2">Ph.D. Student in Business Administration</h2>
+                                <h3 class="text-xl text-blue-600 font-medium mb-1">Strategic Management</h3>
+                                <div class="text-gray-600 space-y-1 mb-8">
+                                    <p>Department of Management</p>
+                                    <p>Strome College of Business</p>
+                                    <p>Old Dominion University</p>
+                                </div>
+                                <button onclick="showSection('portfolio')" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-10 py-4 mb-12 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                                    View Portfolio
+                                </button>
+                                <h3 class="text-2xl font-bold mb-4 gradient-text">Welcome</h3>
+                                <p class="text-gray-700 leading-relaxed text-lg mb-8">
+                                    Welcome to my academic portfolio! Here, you'll find detailed information about my expertise in research and academic projects. I am committed to providing valuable knowledge and support to enhance academic endeavors. Feel free to explore and learn more about my professional background and how I can contribute to your academic projects.
+                                </p>
+                                <div class="flex flex-col items-start gap-6">
+                                    <!-- LinkedIn Logo -->
+                                    <a href="https://www.linkedin.com/in/mehrdad-alikhani" class="text-blue-600 hover:text-blue-700 transition-colors duration-300 hover:scale-110 transform">
+                                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                    </a>
+                                    <!-- About Me Button -->
+                                    <button onclick="showSection('about')" class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-10 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
+                                        About Me
+                                    </button>
                                 </div>
                             </div>
-
-                            <!-- More items follow... -->
                         </div>
                     </div>
-                </div>
-
-
-                <!-- CONTACT SECTION -->
-                <div id="contact-section" class="section-content section-fade hidden">
-                    <div class="glass-effect rounded-3xl p-10">
-                        <h2 class="text-4xl font-bold mb-8 gradient-text">Contact</h2>
-
-                        <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Interest Areas Section -->
+                    <div id="interests-section" class="section-content section-fade hidden">
+                        <div class="glass-effect rounded-3xl p-10">
+                            <h2 class="text-4xl font-bold mb-8 gradient-text">Interest Areas</h2>
                             <div class="space-y-6">
-
-                                <div class="glass-effect p-4 rounded-xl flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
-                                        <svg class="w-6 h-6 text-white" fill="currentColor">
-                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-gray-700 text-lg">malik001@odu.edu</span>
-                                </div>
-
-                                <div class="glass-effect p-4 rounded-xl flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
-                                        <svg class="w-6 h-6 text-white" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-gray-600 text-lg">Norfolk, VA</span>
-                                </div>
-
-                                <div class="glass-effect p-4 rounded-xl flex items-center">
-                                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
-                                        <svg class="w-6 h-6 text-white" fill="currentColor">
-                                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                                        </svg>
-                                    </div>
-                                    <span class="text-gray-600 text-lg">Old Dominion University</span>
-                                </div>
-
-                            </div>
-
-                            <div class="glass-effect p-8 rounded-2xl">
-                                <h3 class="text-2xl font-bold mb-4">Availability</h3>
-                                <p class="text-lg text-gray-600">Monday – Friday</p>
-                                <p class="text-lg text-blue-600 font-semibold">9:00 AM – 5:00 PM</p>
+                                <p class="text-gray-700 leading-relaxed text-lg">
+                                    I am passionate about exploring how new ideas, emerging technologies, and management theories shape the future of entrepreneurship. My research focuses on understanding how entrepreneurs, investors, and ecosystems leverage innovation, collective intelligence, and technology to create lasting impact.
+                                </p>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-4">Areas of Interest</h3>
+                                <ul class="list-disc list-inside text-gray-600 text-lg space-y-2">
+                                    <li>Entrepreneurship & Innovation</li>
+                                    <li>Crowd Wisdom</li>
+                                    <li>Entrepreneurial Finance (Crowdfunding & Venture Capital)</li>
+                                    <li>AI & Technology Adoption</li>
+                                </ul>
                             </div>
                         </div>
+                    </div>
+                    <!-- Portfolio Section -->
+                    <div id="portfolio-section" class="section-content section-fade hidden">
+                        <div class="rounded-3xl p-10">
+                            <h2 class="text-4xl font-bold mb-8 gradient-text">Portfolio</h2>
+                            <div class="space-y-4">
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('eye-tracking')">
+                                    <h3 class="text-xl font-semibold text-gray-900">Eye-Tracking</h3>
+                                    <div id="eye-tracking" class="dropdown-content">
+                                        <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">A Conceptual Model for Eye-Tracking Backer Attention to Creator and Crowd Signals with Demographic Moderation in Crowdfunding.</p>
+                                        <a href="https://mhrd-a.github.io/NeuroView/" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
+                                    </div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('business-model')">
+                                    <h3 class="text-xl font-semibold text-gray-900">Business Model Hub</h3>
+                                    <div id="business-model" class="dropdown-content">
+                                        <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">Provide entrepreneurs and students with intuitive tools to design, analyze, and generate complete business models.</p>
+                                        <ul class="list-disc list-inside text-gray-500 text-lg space-y-1 mb-4">
+                                            <li>    <strong>Studio</strong>: Visually map your business model using drag-and-drop segments.</li>
+                                            <li>    <strong>Navigator</strong>: Step-by-step guidance to structure ideas into a valid business model.</li>
+                                            <li>    <strong>Generator</strong>: Use AI to automatically populate the Business Model Canvas based on your description.</li>
+                                            <li>    <strong>Adventure</strong>: A gamified quiz tool to test and enhance your business model knowledge.</li>
+                                        </ul>
+                                        <a href="https://hub.odusec.org/" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">View Project</a>
+                                    </div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('flashcards')">
+                                    <h3 class="text-xl font-semibold text-gray-900">Management Theories Flashcards</h3>
+                                    <div id="flashcards" class="dropdown-content">
+                                        <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">Interactive flashcards to help students and professionals learn and review key management theories.</p>
+                                    </div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('sentimental-analysis')">
+                                    <h3 class="text-xl font-semibold text-gray-900">Sentimental Analysis on SEC 10-K Filings</h3>
+                                    <div id="sentimental-analysis" class="dropdown-content">
+                                        <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">Analysis of sentiment in SEC 10-K filings to understand corporate communication trends.</p>
+                                    </div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('recursive-ai')">
+                                    <h3 class="text-xl font-semibold text-gray-900">Recursive Gen AI</h3>
+                                    <div id="recursive-ai" class="dropdown-content">
+                                        <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">Integrating two research areas: recursive AI-guided business modeling and autonomous prompt engineering.</p>
+                                    </div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('ai-venture')">
+                                    <h3 class="text-xl font-semibold text-gray-900">Artificial Intelligence in Venture Capital Investment</h3>
+                                    <div id="ai-venture" class="dropdown-content">
+                                        <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">Exploring the role of AI in enhancing venture capital investment decisions.</p>
+                                    </div>
+                                </div>
+                                <div class="glass-effect p-4 rounded-2xl hover-glow border-l-4 border-gray-100 cursor-pointer" onclick="toggleDropdown('econ')">
+                                    <h3 class="text-xl font-semibold gradient-text">ECON 708: Econometrics III_Final Project</h3>
+                                    <div id="econ" class="dropdown-content">
+                                        <p class="text-gray-500 text-lg leading-relaxed mt-4 mb-4">
+                                            This research examines whether changes in local employment conditions influence entrepreneurial activity 
+                                            on online crowdfunding platforms such as Kickstarter. Specifically, whether strengthening or 
+                                            weakening labor markets affect the number of new crowdfunding projects launched in each state and 
+                                            the likelihood that those projects reach their funding goals.
+                                        </p>
+                                        
+                                        <!-- View Project -->
+                                        <button onclick="openEconModal('html', 'https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Project.html')"
+                                            class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700
+                                                   text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 
+                                                   hover:scale-105 inline-block mb-3">
+                                            View Project
+                                        </button>
+                                        
+                                        <!-- Video Abstract -->
+                                        <button onclick="openEconModal('video', 'https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Video_Abstract-480.mp4')"
+                                            class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700
+                                                   text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 
+                                                   hover:scale-105 inline-block mb-3">
+                                            Video Abstract
+                                        </button>
+                                        
+                                        <!-- Executive Summary PDF -->
+                                        <button onclick="openEconModal('pdf', 'https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Executive_Summary.pdf')"
+                                            class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700
+                                                   text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 
+                                                   hover:scale-105 inline-block mb-3">
+                                            Executive Summary
+                                        </button>
+                                        
+                                        <!-- Slides PDF -->
+                                        <button onclick="openEconModal('pdf', 'https://mhrd-a.github.io/portfolio/Employment_and_Entrepreneurial_Activity_Slides.pdf')"
+                                            class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700
+                                                   text-white px-6 py-2 rounded-full font-semibold transition-all duration-300 
+                                                   hover:scale-105 inline-block">
+                                            Slides
+                                        </button>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- About Me Section -->
+                    <div id="about-section" class="section-content section-fade hidden">
+                        <div class="glass-effect rounded-3xl p-10">
+                            <h2 class="text-4xl font-bold mb-8 gradient-text">About Me</h2>
+                            <div class="space-y-8">
+                                <p class="text-gray-700 leading-relaxed text-lg">
+                                    As a Ph.D. student in Business Administration with a focus on Strategic Management, I am passionate about advancing knowledge in organizational strategy and management practices. My academic journey at Old Dominion University's Strome College of Business has equipped me with comprehensive research skills and deep theoretical understanding.
+                                </p>
+                                <div class="glass-effect p-0 rounded-2xl">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-6">My Journey</h3>
+                                    <div class="space-y-8">
+                                        <!-- BUZ Farwell + Project Management Certification -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/buhler.jpeg?raw=true" alt="BUZ Farwell" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-800">BUZ Farwell + Project Management Certification</h4>
+                                                <p class="text-gray-500 text-lg leading-relaxed">Completed a one-year Project Management Course at Bühler's headquarters in Switzerland, culminating in a graduation ceremony recognizing my training as a project manager.</p>
+                                            </div>
+                                        </div>
+                                        <!-- eBuhler Innovation Challenge -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/ebuhler.jpeg?raw=true" alt="eBuhler Innovation" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-800">"eBuhler" Idea in the Bühler Innovation Challenge 2016</h4>
+                                                <p class="text-gray-500 text-lg leading-relaxed">Recognized as a finalist in the 2016 Bühler Innovation Challenge for "eBuhler," a technology platform connecting producers and customers for direct purchases, enabling market demand analysis to boost production line sales.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Business Models Workshop -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/workshop.jpeg?raw=true" alt="Business Models Workshop" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-800">"Introduction to Business Models and Business Model Patterns” Workshop</h4>
+                                                <p class="text-gray-500 text-lg leading-relaxed">Led a workshop covering idea generation, market research, opportunity recognition, business model design, and various business model patterns to empower entrepreneurs and students.</p>
+                                            </div>
+                                        </div>
+                                        <!-- LG Global Challenge -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/ecoblock.jpeg?raw=true" alt="LG Global Challenge" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-800">Semifinalist of “LG Global Challenge 2018”</h4>
+                                                <p class="text-gray-500 text-lg leading-relaxed">Achieved semifinalist status in the LG Global Challenge 2018 by proposing blockchain-based solutions for environmental sustainability.</p>
+                                            </div>
+                                        </div>
+                                        <!-- University Award -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/iust.jpeg?raw=true" alt="LG Global Challenge" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-800">University Graduation Day + Top Student University Award 2018</h4>
+                                                <p class="text-gray-500 text-lg leading-relaxed">Received the Top Student University Award in 2018.</p>
+                                            </div>
+                                        </div>
+                                        <!-- Crowd Wisdom in Fundraising -->
+                                        <div class="flex gap-4">
+                                            <img src="https://github.com/mhrd-a/mhrd-a.github.io/blob/main/files/gsga.jpeg?raw=true" alt="Crowd Wisdom Research" class="story-photo" />
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-800">Crowd Wisdom in Fundraising: A Cognitive Decision-Making Approach</h4>
+                                                <p class="text-gray-500 text-lg leading-relaxed">Our study examines the cognitive dimensions of crowd wisdom in crowdfunding, exploring how decision-making is shaped by attention, relevance, and mental models. 2nd GSGA Annual Research Conference.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contact Section -->
+                    <div id="contact-section" class="section-content section-fade hidden">
+                        <div class="glass-effect rounded-3xl p-10">
+                            <h2 class="text-4xl font-bold mb-8 gradient-text">Contact</h2>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="space-y-6">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center glass-effect p-4 rounded-xl">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                                </svg>
+                                            </div>
+                                            <span class="text-gray-700 text-lg">malik001@odu.edu</span>
+                                        </div>
+                                        <div class="flex items-center glass-effect p-4 rounded-xl">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                                                </svg>
+                                            </div>
+                                            <span class="text-gray-600 text-lg">Norfolk, VA</span>
+                                        </div>
+                                        <div class="flex items-center glass-effect p-4 rounded-xl">
+                                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                                                </svg>
+                                            </div>
+                                            <span class="text-gray-600 text-lg">Old Dominion University</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="glass-effect p-8 rounded-2xl">
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Availability</h3>
+                                    <div class="space-y-3 text-gray-600 text-lg">
+                                        <p>Monday - Friday</p>
+                                        <p class="text-blue-600">9:00 AM - 5:00 PM</p>
+                                        <div class="w-full h-px bg-gray-300 my-4"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            </div> <!-- end right column -->
-        </div> <!-- end row -->
-    </div> <!-- end main -->
-
-
-    <!-- ====================================== -->
-    <!--        ECON POPUP MODAL SYSTEM         -->
-    <!-- ====================================== -->
-
-    <div id="econ-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden justify-center items-center z-50 p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative animate-fadeIn">
-
-            <!-- Close Button -->
-            <button onclick="closeEconModal()" 
-                    class="absolute top-3 right-3 text-gray-700 hover:text-black text-3xl leading-none">
-                &times;
-            </button>
-
-            <!-- Modal Header -->
-            <div class="p-4 border-b">
-                <h2 class="text-2xl font-bold gradient-text">Econometrics III — Project Viewer</h2>
             </div>
-
-            <!-- Dynamic Content Loader -->
-            <div id="econ-modal-content" class="w-full h-[80vh] overflow-auto bg-gray-50"></div>
-
         </div>
     </div>
-<!-- ===================== -->
-<!--       JAVASCRIPT      -->
-<!-- ===================== -->
-<script>
-    /* -------------------------
-       MOBILE MENU TOGGLE
-    -------------------------- */
-
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
-
-    function toggleMobileMenu() {
-        mobileMenu.classList.toggle('hidden');
-        hamburgerIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-    }
-
-    mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
 
 
-    /* -------------------------
-       SECTION SWITCHING
-    -------------------------- */
+    <!-- UNIVERSAL MODAL FOR ECON PROJECT -->
+<div id="econ-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden justify-center items-center z-50 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden relative animate-fadeIn">
 
-    function showSection(sectionName) {
-        const profilePhotoColumn = document.getElementById('profile-photo-column');
+        <!-- CLOSE BUTTON -->
+        <button onclick="closeEconModal()" class="absolute top-3 right-3 text-gray-700 hover:text-black text-3xl leading-none">
+            &times;
+        </button>
 
-        if (sectionName === 'home') {
-            profilePhotoColumn.classList.remove('hidden');
-        } else {
-            profilePhotoColumn.classList.add('hidden');
+        <!-- TITLE -->
+        <div class="p-4 border-b">
+            <h2 class="text-2xl font-bold gradient-text">Econometrics III — Project Viewer</h2>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div id="econ-modal-content" class="w-full h-[80vh] overflow-auto bg-gray-50">
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CSS ANIMATION -->
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out;
+}
+</style>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
         }
 
-        document.querySelectorAll('.section-content').forEach(section => {
-            section.classList.remove('active');
-            setTimeout(() => {
-                section.classList.add('hidden');
-            }, 250);
-        });
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
-        setTimeout(() => {
-            const target = document.getElementById(sectionName + '-section');
-            if (target) {
-                target.classList.remove('hidden');
-                setTimeout(() => target.classList.add('active'), 50);
+        function showSection(sectionName) {
+            const profilePhotoColumn = document.getElementById('profile-photo-column');
+            if (sectionName === 'home') {
+                // If it's the home section, ensure the photo is visible on all screen sizes
+                profilePhotoColumn.classList.remove('hidden', 'lg:block');
+            } else {
+                // For all other sections, hide the photo on mobile but show it on desktop
+                profilePhotoColumn.classList.add('hidden', 'lg:block');
             }
-        }, 250);
 
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        document.querySelector(`.nav-link[href="#${sectionName}"]`)?.classList.add('active');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => showSection('home'), 100);
-    });
-
-
-
-    /* -------------------------
-       PORTFOLIO DROPDOWN
-    -------------------------- */
-
-    function toggleDropdown(id) {
-        const content = document.getElementById(id);
-
-        if (!content) return;
-
-        if (content.classList.contains('open')) {
-            content.classList.remove('open');
-            return;
+            // Hide all sections with fade out
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                setTimeout(() => {
+                    section.classList.add('hidden');
+                }, 250);
+            });
+            
+            // Show the selected section with fade in
+            setTimeout(() => {
+                const targetSection = document.getElementById(sectionName + '-section');
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                    setTimeout(() => {
+                        targetSection.classList.add('active');
+                    }, 50);
+                }
+            }, 250);
+            
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Highlight active nav item
+            const activeLinks = document.querySelectorAll(`.nav-link[href="#${sectionName}"]`);
+            if (activeLinks) {
+                activeLinks.forEach(link => link.classList.add('active'));
+            }
         }
 
-        document.querySelectorAll('.dropdown-content').forEach(item => item.classList.remove('open'));
-        content.classList.add('open');
-    }
 
-
-
-    /* -------------------------
-       ECON POPUP MODAL SYSTEM
-    -------------------------- */
-
-    function openEconModal(type, url) {
-        const modal = document.getElementById('econ-modal');
-        const container = document.getElementById('econ-modal-content');
-
-        container.innerHTML = ""; // clear previous content
-
-        // VIDEO
-        if (type === "video") {
-            container.innerHTML = `
-                <video controls autoplay class="w-full h-full bg-black object-contain">
-                    <source src="${url}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            `;
+        
+        function openEconModal(type, url) {
+            const modal = document.getElementById('econ-modal');
+            const container = document.getElementById('econ-modal-content');
+        
+            // Clear old content
+            container.innerHTML = "";
+        
+            // Determine content type
+            if (type === "video") {
+                container.innerHTML = `
+                    <video src="${url}" controls autoplay class="w-full h-full object-contain bg-black"></video>
+                `;
+            }
+            else if (type === "pdf") {
+                container.innerHTML = `
+                    <iframe src="${url}" class="w-full h-full" frameborder="0"></iframe>
+                `;
+            }
+            else if (type === "html") {
+                container.innerHTML = `
+                    <iframe src="${url}" class="w-full h-full" frameborder="0"></iframe>
+                `;
+            }
+        
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
         }
-
-        // PDF
-        else if (type === "pdf") {
-            container.innerHTML = `
-                <iframe src="${url}" class="w-full h-full" frameborder="0"></iframe>
-            `;
+        
+        function closeEconModal() {
+            const modal = document.getElementById('econ-modal');
+            const container = document.getElementById('econ-modal-content');
+        
+            // Stop video if playing
+            container.innerHTML = "";
+        
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
         }
-
-        // HTML Project Page
-        else if (type === "html") {
-            container.innerHTML = `
-                <iframe src="${url}" class="w-full h-full" frameborder="0"></iframe>
-            `;
+        
+        
+                
+        function toggleDropdown(id) {
+            const content = document.getElementById(id);
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+            } else {
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content').forEach(item => {
+                    item.classList.remove('open');
+                });
+                // Open the clicked dropdown
+                content.classList.add('open');
+            }
         }
-
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
-    }
-
-    function closeEconModal() {
-        const modal = document.getElementById('econ-modal');
-        const container = document.getElementById('econ-modal-content');
-
-        container.innerHTML = ""; // stop video + clear iframe
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
-    }
-</script>
-
+    
+        // Initialize with home section
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                showSection('home');
+            }, 100);
+        });
+    </script>
 </body>
 </html>
